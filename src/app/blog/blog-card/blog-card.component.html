@@ -1,0 +1,33 @@
+<div class="card blogpost">
+  <!-- <h3 class="title">{{ post.title }}</h3> -->
+  <div class="title">
+    <h3>{{ post.title }}</h3>
+    {{ post.createdDate | date: "EEEE, MMMM d, y, h:mm a":"-0400" }}
+  </div>
+
+  <section class="section">
+    <div [innerHTML]="post.text"></div>
+    <div class="comments-accordion">
+      <ngb-accordion>
+        <ngb-panel title="Comments">
+          <ng-template ngbPanelContent>
+            <div *ngFor="let comment of post['comments']">
+              <div class="comment">
+                <div class="username">
+                  <b>{{ comment.user.displayName }}</b> replied on
+                  {{
+                    comment.createdDate
+                      | date: "EEEE, MMMM d, y, h:mm a":"-0400"
+                  }}
+                </div>
+                <div>
+                  {{ comment.text }}
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </section>
+</div>

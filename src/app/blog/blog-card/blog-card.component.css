@@ -1,0 +1,35 @@
+.title {
+  /* background-color: #f8f9fa !important; */
+  /* background-color: #26596a !important; */
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.blogpost {
+  background-color: #26596a !important;
+  padding: 5px;
+  margin: 5px;
+  color: #98bdc9;
+  border: 1px;
+  border-color: #98bdc9;
+  border-style: solid;
+}
+.username {
+  font-size: 9pt;
+}
+.comment {
+  margin: 10px;
+}
+.comments-accordion {
+  background-color: #98bdc9;
+  color: #26596a;
+}
+::ng-deep .card-header {
+  color: #98bdc9;
+  background-color: #26596a;
+}
+
+::ng-deep .card-body {
+  background-color: #98bdc9;
+  color: #26596a;
+}

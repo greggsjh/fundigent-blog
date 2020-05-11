@@ -1,0 +1,17 @@
+.fdg-body {
+  background-color: #26596a;
+  font-family: Segoe UI, Helvetica, Arial, Helvetica, sans-serif;
+}
+.sm-logo {
+  width: 75px;
+  margin: 5px;
+  padding: 5px;
+}
+.sm-logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.social {
+  position: fixed;
+  bottom: 50%;
+}

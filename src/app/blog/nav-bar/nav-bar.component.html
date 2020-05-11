@@ -1,0 +1,28 @@
+<div class="container">
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    class="nav sticky-top navbar-expand-lg navbar-light fdg-menu"
+  >
+    <a class="navbar-brand" href="#">
+      <!-- <img src="/src/app/content/images/Logo.png" alt="Fundigent" /> -->
+      Fundamentals & Intelligence
+    </a>
+    <li [ngbNavItem]>
+      <a ngbNavLink>Blog</a>
+      <ng-template ngbNavContent>
+        <app-blog-container></app-blog-container>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]>
+      <a ngbNavLink>Resumé</a>
+      <ng-template> </ng-template>
+    </li>
+    <li>
+      <button class="btn btn-sm btn-light float-right" type="button">
+        Login
+      </button>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+</div>

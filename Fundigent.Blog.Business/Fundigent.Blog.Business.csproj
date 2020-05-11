@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fundigent.Blog.CoreObjects\Fundigent.Blog.CoreObjects.csproj" />
+    <ProjectReference Include="..\Fundigent.Blog.Data\Fundigent.Blog.Data.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+<div class="row blog-list">
+  <img
+    class="banner-image cols-md"
+    src="../../../assets/images/atl-skyline2.jpg"
+    alt="Fundigent"
+  />
+  <div class="cols-md" *ngFor="let item of posts">
+    <app-blog-card [post]="item"></app-blog-card>
+  </div>
+</div>
