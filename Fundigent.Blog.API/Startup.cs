@@ -36,7 +36,6 @@ namespace Fundigent.Blog.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BlogContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:FundigentDB"]));
             services.AddDbContext<FundigentDbContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings__FundigentBlogDb"]));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors(options =>

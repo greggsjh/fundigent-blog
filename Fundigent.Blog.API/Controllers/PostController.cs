@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Text.Json;
 using AutoMapper;
 using Fundigent.Blog.API.Helpers;
 using Fundigent.Blog.CoreObjects.Entities;
@@ -30,6 +31,8 @@ namespace Fundigent.Blog.API.Controllers
 
         // GET: api/posts/postId
         [HttpGet("{postId:guid}", Name = "GetPost")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public ActionResult<PostDto> GetPost(Guid postId)
         {
             var post = postRepo.Get(postId);
@@ -39,11 +42,25 @@ namespace Fundigent.Blog.API.Controllers
 
         // GET: api/posts
         [HttpGet(Name = "GetPosts")]
+        [HttpHead]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public IActionResult GetPosts([FromQuery] PostsResourceParameter resourceParameter)
         {
             //List<Post> posts = await _context.Posts.ToListAsync();
             //var postEntities = postRepo.Get(10);
             var postEntities = postRepo.Get(resourceParameter);
+
+            var paginationMetadata = new
+            {
+                totalCount = postEntities.TotalCount,
+                pageSize = postEntities.PageSize,
+                currentPage = postEntities.CurrentPage,
+                totalPages = postEntities.TotalPages
+            };
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+
             var postDtos = mapper.Map<IEnumerable<PostDto>>(postEntities).Expand();
 
             var postDtosWithLinks = postDtos.Select(el =>
@@ -60,6 +77,8 @@ namespace Fundigent.Blog.API.Controllers
 
         // GET: api/posts/postId/comments
         [HttpGet("{postId:guid}/comments", Name = "GetComments")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public ActionResult<IEnumerable<CommentDto>> GetComments(Guid postId, [FromQuery] CommentsResourceParameter resourceParameter)
         {
             var comments = commentRepo.GetByPostId(postId, resourceParameter);
@@ -69,6 +88,8 @@ namespace Fundigent.Blog.API.Controllers
 
         // POST: api/posts
         [HttpPost(Name = "CreatePost")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public IActionResult CreatePost([FromBody] CreatePostDto post)
         {
             var postEntity = mapper.Map<Post>(post);
@@ -93,6 +114,13 @@ namespace Fundigent.Blog.API.Controllers
             postRepo.SaveChanges();
 
             return NoContent();
+        }
+
+        [HttpOptions]
+        public IActionResult GetPostActions()
+        {
+            Response.Headers.Add("Allow", "GET, OPTIONS, HEAD, POST, DELETE");
+            return Ok();
         }
 
         #region Private Methods

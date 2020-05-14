@@ -25,13 +25,10 @@ namespace Fundigent.Blog.API.Controllers
             this.commentRepo = commentRepo;
             this.mapper = mapper;
         }
-        [HttpGet]
-        public ActionResult<IEnumerable<UserDto>> GetUsers()
-        {
-            throw new NotImplementedException();
-        }
 
         [HttpGet("{userName:alphaNumeric}")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public ActionResult<UserDto> GetUser(string userName)
         {
             var user = userRepo.Get(userName);
@@ -45,11 +42,20 @@ namespace Fundigent.Blog.API.Controllers
         }
 
         [HttpGet("{userName:alphaNumeric}/comments")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public ActionResult<IEnumerable<UserCommentDto>> GetComments(string userName, [FromQuery] CommentsResourceParameter resourceParameter)
         {
             var comments = commentRepo.GetByUserName(userName, resourceParameter);
 
             return mapper.Map<IEnumerable<Comment>, IEnumerable<UserCommentDto>>(comments).ToList();
+        }
+
+        [HttpOptions]
+        public IActionResult GetUserActions()
+        {
+            Response.Headers.Add("Allow", "GET");
+            return Ok();
         }
     }
 }
