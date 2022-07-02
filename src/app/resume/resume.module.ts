@@ -8,6 +8,7 @@ import { ResumeContainerComponent } from './resume-container/resume-container.co
   declarations: [ResumeContainerComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ResumeContainerComponent]
 })
 export class ResumeModule { }

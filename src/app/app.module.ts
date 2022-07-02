@@ -9,6 +9,7 @@ import { BlogModule } from "./blog/blog.module";
 import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
 import { NavBarComponent } from "./blog/nav-bar/nav-bar.component";
 import { FooterComponent } from "./blog/footer/footer.component";
+import { ResumeModule } from "./resume/resume.module";
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent, FooterComponent],
@@ -19,6 +20,7 @@ import { FooterComponent } from "./blog/footer/footer.component";
     HttpClientModule,
     NgbAccordionModule,
     NgbNavModule,
+    ResumeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
