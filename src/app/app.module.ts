@@ -6,7 +6,7 @@ import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BlogModule } from "./blog/blog.module";
-import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbNavModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NavBarComponent } from "./blog/nav-bar/nav-bar.component";
 import { FooterComponent } from "./blog/footer/footer.component";
 import { ResumeModule } from "./resume/resume.module";
@@ -20,7 +20,8 @@ import { ResumeModule } from "./resume/resume.module";
     HttpClientModule,
     NgbAccordionModule,
     NgbNavModule,
-    ResumeModule
+    ResumeModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
